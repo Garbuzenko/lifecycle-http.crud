@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/garbuzenko/lifecycle-http.crud/static/css/main.128f5f02.css",
+    "main.js": "/garbuzenko/lifecycle-http.crud/static/js/main.9c765e8e.js",
+    "static/js/787.ad4f4dcc.chunk.js": "/garbuzenko/lifecycle-http.crud/static/js/787.ad4f4dcc.chunk.js",
+    "index.html": "/garbuzenko/lifecycle-http.crud/index.html",
+    "main.128f5f02.css.map": "/garbuzenko/lifecycle-http.crud/static/css/main.128f5f02.css.map",
+    "main.9c765e8e.js.map": "/garbuzenko/lifecycle-http.crud/static/js/main.9c765e8e.js.map",
+    "787.ad4f4dcc.chunk.js.map": "/garbuzenko/lifecycle-http.crud/static/js/787.ad4f4dcc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.128f5f02.css",
+    "static/js/main.9c765e8e.js"
+  ]
+}
