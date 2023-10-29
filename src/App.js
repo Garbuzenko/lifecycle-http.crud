@@ -1,39 +1,47 @@
 import './App.css';
-import { Route, Routes, Link } from 'react-router-dom'
-import AddPost from "./components/AddPost";
-import PostsList from "./components/PostsList";
-import Post from "./components/Post";
-import "bootstrap/dist/css/bootstrap.min.css";
+import Form from './components/Form/Form';
+import Cards from './components/Cards/Cards';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Header from './components/Header/Header';
 
 function App() {
+
+  const [cards, setCards] = useState([]);
+
+  useEffect(
+    () => {
+      axios.get('http://localhost:7070/notes')
+        .then(responce => {
+          setCards(responce.data);
+        })
+    }, []);
+
+  const handleSubmit = (currentText) => {
+    axios.post('http://localhost:7070/notes', {
+      "id": 0,
+      "content": currentText
+    })
+  };
+
+  const onDeleteCard = (idDeletedCard) => {
+    axios.delete('http://localhost:7070/notes/' + idDeletedCard);
+    updateCards();
+  }
+
+  const updateCards = () => {
+    axios.get('http://localhost:7070/notes')
+        .then(responce => {
+          setCards(responce.data);
+        })
+  }
+
   return (
-      <>
-          <nav className="navbar navbar-expand navbar-dark bg-dark">
-              <a href="/notes" className="navbar-brand">
-                  Notes app
-              </a>
-              <div className="navbar-nav mr-auto">
-                  <li className="nav-item">
-                      <Link to={"/notes"} className="nav-link">
-                          Notes
-                      </Link>
-                  </li>
-                  <li className="nav-item">
-                      <Link to={"/add"} className="nav-link">
-                          Add
-                      </Link>
-                  </li>
-              </div>
-          </nav>
-          <div className="container mt-3">
-              <Routes>
-                  <Route path="/" element={<PostsList/>} />
-                  <Route path="/notes" element={<PostsList/>} />
-                  <Route path="/add" element={<AddPost/>} />
-                  <Route path="/notes/:id" element={<Post/>} />
-              </Routes>
-          </div>
-      </>
+    <div className="App">
+      <Header updateCards = {updateCards}/>
+      <Cards cards={cards} onDeleteCard={onDeleteCard} />
+      <Form handleSubmit={handleSubmit} />
+    </div>
   );
 }
 
